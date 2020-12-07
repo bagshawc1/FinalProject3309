@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const port = 3000;
+const path = require('path');
 const mysql = require('mysql');
 
 const connection = mysql.createConnection({
@@ -12,7 +13,7 @@ const connection = mysql.createConnection({
 });
 
 
-//app.use(express.static(path.join(__dirname, 'directory here')));
+app.use(express.static(path.join(__dirname, 'dist/FinalProject3309')));
 
 app.get('/showByAge', (req, res) => {
     connection.query("SELECT COUNT(id) as numberOfPeople, age FROM profile GROUP BY age ORDER BY age ASC", function (err, result, fields) {
@@ -54,7 +55,7 @@ app.get('/login/:username/:password', (req, res) => {
   let username = req.params.username;
   let password = req.params.password;
 
-  connection.query("SELECT username, password FROM profile WHERE username = '" + username + "' AND password = '" + password + "'", function (err, result, fields) {
+  connection.query("SELECT username, password, id FROM profile WHERE username = '" + username + "' AND password = '" + password + "'", function (err, result, fields) {
     if (err) throw err;
     if(result.length  === 0){
       res.status(404).send()

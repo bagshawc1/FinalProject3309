@@ -9,7 +9,7 @@ import { Subscription } from 'rxjs';
 })
 export class FrontendComponent implements OnInit {
   @Output() isLogout = new EventEmitter<void>();
-
+  userID: string;
   subjectEntry = '';
   componentEntry = '';
   superEntry = '';
@@ -24,8 +24,7 @@ export class FrontendComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit(): void {
-
-
+    this.userID = sessionStorage.getItem('userID');
   }
 
   viewAllExercises(): void {

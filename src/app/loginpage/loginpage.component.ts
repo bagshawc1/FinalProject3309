@@ -39,7 +39,23 @@ export class LoginpageComponent implements OnInit {
   }
 
   login(username: string, password: string): void {
-    this.httpRequest.login(username, password);
+    this.httpRequest.login(username, password).then(data => {
+      for (const newKey in data) {
+        if (data.hasOwnProperty(newKey)){
+          this.isSignedIn = true;
+          if (data[newKey].username === 'jsmithy'){
+            this.router.navigateByUrl('admin');
+          }
+          else{
+            sessionStorage.setItem('userID', data[newKey].id);
+            this.router.navigateByUrl('members');
+          }
+        }
+      }
+    })
+      .catch(err => {
+        alert('Invalid Login Information');
+      });
   }
   createAccount(): void{
     return;
