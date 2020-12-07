@@ -1,5 +1,4 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FirebaseService } from '../services/firebase.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,30 +8,24 @@ import { Router } from '@angular/router';
 })
 export class AdminComponent implements OnInit {
   @Output() isLogout = new EventEmitter<void>();
-  isSignedIn = false
-  constructor(public firebaseService: FirebaseService, private router: Router) { }
+  isSignedIn = false;
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
-
-
-  logout() {
-    this.firebaseService.logOut()
-    this.isLogout.emit()
-    this.router.navigateByUrl('')
+  handleLogout(): void {
+    this.isSignedIn = false;
   }
 
-  handleLogout() {
-    this.isSignedIn = false
-
+  displayAll(): void {
+    alert('bonjour');
   }
 
-  displayAll() {
-    alert("bonjour")
+  trainerSalaries(): void {
+    alert('bingo');
   }
-
-  trainerSalaries() {
-    alert("bingo")
+  logout(): void {
+    return;
   }
 
 

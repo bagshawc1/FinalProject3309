@@ -1,5 +1,4 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FirebaseService } from '../services/firebase.service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
@@ -11,41 +10,39 @@ import { Subscription } from 'rxjs';
 export class FrontendComponent implements OnInit {
   @Output() isLogout = new EventEmitter<void>();
 
-  subject_entry = ''
-  component_entry = ''
-  super_entry = ""
-  array_1 = [] as any[];
-  courses: any = []
+  subjectEntry = '';
+  componentEntry = '';
+  superEntry = '';
+  array1 = [] as any[];
+  courses: any = [];
   isSignedIn = false;
-  empty = "";
-  get_schedules: any;
+  empty = '';
+  getSchedules: any;
   private scheduleSubscriber: Subscription;
 
 
-  constructor(public firebaseService: FirebaseService, private router: Router) { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
 
 
   }
 
-  viewAllExercises() {
-    alert("this button works")
+  viewAllExercises(): void {
+    alert('this button works');
   }
 
-  workoutRecommendation() {
-    alert("button works")
+  workoutRecommendation(): void {
+    alert('button works');
   }
 
-  logout() {
-    this.firebaseService.logOut()
-    this.isLogout.emit()
-    this.router.navigateByUrl('')
+  logout(): void {
+    this.isLogout.emit();
+    this.router.navigateByUrl('');
   }
 
-  handleLogout() {
-    this.isSignedIn = false
-
+  handleLogout(): void {
+    this.isSignedIn = false;
   }
 
 

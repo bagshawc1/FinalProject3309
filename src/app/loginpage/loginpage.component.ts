@@ -1,5 +1,4 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FirebaseService } from '../services/firebase.service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
@@ -11,25 +10,24 @@ import { Subscription } from 'rxjs';
 export class LoginpageComponent implements OnInit {
   isSignedIn = false;
   private scheduleSubscriber: Subscription;
+  subjectEntry = '';
+  componentEntry = '';
+  userName = '';
+  superEntry = '';
+  array1 = [] as any[];
+  courses: any = [];
+  getSchedules: any;
+  FLName = '';
+  userAge = '';
 
-  subject_entry = ''
-  component_entry = ''
-  userName = ""
-  super_entry = ""
-  array_1 = [] as any[];
-  courses: any = []
-  get_schedules: any;
-  FLName = ""
-  userAge = ""
 
-
-  constructor(public firebaseService: FirebaseService, private router: Router) { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
     if (localStorage.getItem('user') !== null) {
-      this.isSignedIn = true
+      this.isSignedIn = true;
     }
-    else { this.isSignedIn = false }
+    else { this.isSignedIn = false; }
 
   }
 
@@ -59,5 +57,4 @@ export class LoginpageComponent implements OnInit {
   //   }
 
   // }
-
 }
