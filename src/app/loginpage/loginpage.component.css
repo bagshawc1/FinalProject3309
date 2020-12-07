@@ -1,0 +1,43 @@
+div.form
+{
+    display: block;
+    text-align: center;
+}
+form
+{
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+}
+
+.aboutUs{
+
+    background-color: plum;
+    border: thin solid black;
+    width: 100%;
+    font-family: Arial;
+    font-style: italic;
+}
+
+
+.signUp{
+
+    background-color: lavender;
+    border: thin solid black;
+    width: 100%;
+    font-family: Arial;
+    font-style: italic;
+    text-align: center;
+
+}
+
+.signIn{
+    background-color: lavender;
+    border: thin solid black;
+    width: 100%;
+    font-family: Arial;
+    font-style: italic;
+    text-align: center;
+
+}

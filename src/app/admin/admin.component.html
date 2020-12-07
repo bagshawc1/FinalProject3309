@@ -1,0 +1,49 @@
+<br>
+<div class="aboutUs">
+    <h3 class="messageCenter">
+        Welcome Administrator!
+    </h3>
+</div>
+
+<br>
+
+<div class="signUp">
+    <h2 class="messageCenter">
+        Display all users & their workouts:
+    </h2>
+    <div class="form">
+        <button (click)="displayAll()">View all users and workouts</button>
+    </div>
+</div>
+
+<br>
+
+<div class="signUp">
+    <h2 class="messageCenter">
+        Modify trainer salaries:
+    </h2>
+    <div class="form">
+        <button (click)="trainerSalaries()">Give a raise to below-average income trainers</button>
+    </div>
+</div>
+
+<br>
+
+
+<div class="signUp">
+    <h2 class="messageCenter">
+        Display number of users within a certain age group:
+    </h2>
+    <div class="form">
+        <input type="text" placeholder="Enter the age group">
+        <button (click)="displayAll()">View users in the selected age group</button>
+    </div>
+</div>
+
+<br>
+
+
+
+<button (click)="logout()">Logout</button>
+
+<app-loginpage *ngIf="isSignedIn" (isLogout)="handleLogout()"></app-loginpage>

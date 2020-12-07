@@ -1,0 +1,36 @@
+<br>
+<div class="aboutUs">
+    <h3 class="messageCenter">
+        Welcome to the BAMM Workout App!
+        <p>
+            On this page you can find all the tools to make your
+            workout experience better than ever! Regardless of what your goal may be,
+            you will be able to find the best exercises and routines to achieve them.
+            We hope that you have a great time on our application, and remember, no pain, no gain!
+        </p>
+    </h3>
+</div>
+
+<br>
+
+<div class="signUp">
+    <h2 class="messageCenter">
+        Ask for a workout reccommendation:
+    </h2>
+    <div class="form">
+        <button (click)="workoutRecommendation()">Recommend me a work-out!</button>
+    </div>
+</div>
+<br>
+<div class="newbanner">
+    <h2 class="messageCenter">
+        View all exercises:
+    </h2>
+    <div class="form">
+        <button (click)="workoutRecommendation()">Show me all exercises!</button>
+    </div>
+</div>
+
+
+<button (click)="logout()">Logout</button>
+<app-loginpage *ngIf="isSignedIn" (isLogout)="handleLogout()"></app-loginpage>
