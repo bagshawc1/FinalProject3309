@@ -50,6 +50,21 @@ app.get('/showGoals:var', (req, res) =>{
   });
 });
 
+app.get('/login/:username/:password', (req, res) => {
+  let username = req.params.username;
+  let password = req.params.password;
+
+  connection.query("SELECT username, password FROM profile WHERE username = '" + username + "' AND password = '" + password + "'", function (err, result, fields) {
+    if (err) throw err;
+    if(result.length  === 0){
+      res.status(404).send()
+    }
+    else{
+      res.send(result);
+    }
+  });
+});
+
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });

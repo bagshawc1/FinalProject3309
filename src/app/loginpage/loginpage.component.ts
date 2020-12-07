@@ -1,6 +1,8 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import {HttpClient} from '@angular/common/http';
+import {HttpRequestService} from '../http-request.service';
 
 @Component({
   selector: 'app-loginpage',
@@ -12,7 +14,10 @@ export class LoginpageComponent implements OnInit {
   private scheduleSubscriber: Subscription;
   subjectEntry = '';
   componentEntry = '';
-  userName = '';
+  createUsername = '';
+  username = '';
+  password = '';
+  createPassword = '';
   superEntry = '';
   array1 = [] as any[];
   courses: any = [];
@@ -21,15 +26,25 @@ export class LoginpageComponent implements OnInit {
   userAge = '';
 
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private httpRequest: HttpRequestService) {
+  }
 
   ngOnInit(): void {
     if (localStorage.getItem('user') !== null) {
       this.isSignedIn = true;
+    } else {
+      this.isSignedIn = false;
     }
-    else { this.isSignedIn = false; }
 
   }
+
+  login(username: string, password: string): void {
+    this.httpRequest.login(username, password);
+  }
+  createAccount(): void{
+    return;
+  }
+
 
   // async onSignup(email: string, password: string) {
   //   await this.firebaseService.signUp(email, password)

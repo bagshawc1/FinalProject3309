@@ -5,9 +5,10 @@
     </h2>
     <div class="form">
         <input type="text" placeholder="Enter your name" [(ngModel)]="FLName">
-        <input type="text" placeholder="Enter your username" [(ngModel)]="userName">
+        <input type="text" placeholder="Enter your username" [(ngModel)]="createUsername">
         <input type="text" placeholder="Enter your age" [(ngModel)]="userAge">
-        <input type="password" placeholder="Enter your password" />
+        <input type="password" placeholder="Enter your password" [(ngModel)]="createPassword" />
+        <button (click)="createAccount()">Create Account</button>
     </div>
 
 
@@ -17,8 +18,9 @@
     <h2 class="messageCenter">
         Log in to your account here:
     </h2>
-    <div class="form"><input type="email" placeholder="Enter your registered email" />
-        <input type="password" placeholder="Enter your password" />
+    <div class="form"><input type="text" placeholder="Enter your username" [(ngModel)]="username" />
+        <input type="password" placeholder="Enter your password" [(ngModel)]="password" />
+        <button (click)="login(username, password )">Login</button>
     </div>
 </div>
 
@@ -29,6 +31,5 @@
     </h2>
     <div class="form"><input type="email" placeholder="Enter your registered email" />
         <input type="password" placeholder="Enter your password" />
-
     </div>
 </div>
