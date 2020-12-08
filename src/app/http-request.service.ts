@@ -28,5 +28,8 @@ export class HttpRequestService {
   updateTrainerSalaries(): Promise<any> {
     return (this.http.post(this.url + 'increaseSalary', {}).toPromise());
   }
+  getUsersWorkouts(): Promise<any> {
+	  return (this.http.get(this.url + 'userWorkouts', {}).toPromise());
+  }
 }
 

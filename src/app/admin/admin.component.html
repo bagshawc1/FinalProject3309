@@ -49,7 +49,27 @@
 
 <br>
 
+<div class="signUp">
+    <h2 class="messageCenter">
+        Display all users and their workouts:
+    </h2>
+    <div class="form">
+        <button (click)="getUsersWorkouts()">View all users workouts</button>
+    </div>
+    <div *ngIf="userWorkouts">
+      <ul>
+        <li *ngFor="let group of userWorkouts">
+          <h3>ID: {{group.id}}</h3>
+		  <h3>Name: {{group.id}}</h3>
+		  <h3>Age: {{group.age}}</h3>
+		  <h3>Workout ID: {{group.workoutID}}</h3>
+		  <h3>Workout Name: {{group.workoutName}}</h3>
+        </li>
+      </ul>
+    </div>
+</div>
 
+<br>
 
 <button (click)="logout()">Logout</button>
 

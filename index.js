@@ -40,7 +40,6 @@ app.post('/increaseSalary', (req, res) => {
 
 // display all users and their workouts
 app.get('/userWorkouts', (req, res) => {
-
   connection.query("SELECT profile.id, profile.name, profile.age, favourites.workoutID, workouts.workoutName FROM Favourites INNER JOIN profile ON Favourites.userID = profile.id INNER JOIN Workouts ON Favourites.workoutID = Workouts.workoutID", function (err, result, fields) {
     if (err) throw err;
     res.send(result);

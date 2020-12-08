@@ -12,6 +12,7 @@ export class AdminComponent implements OnInit {
   isSignedIn = false;
   usersByAge = [];
   displayAge = false;
+  userWorkouts = [];
   constructor(private httpRequest: HttpRequestService, private router: Router) { }
 
   ngOnInit(): void {
@@ -21,8 +22,18 @@ export class AdminComponent implements OnInit {
   }
 
   displayAll(): void {
-    alert('bonjour');
-  }
+    this.httpRequest.getUsersWorkouts().then(data => {
+		for (const newKey in data) {
+			this.userWorkouts.push(data[newKey]);
+		}
+		console.log(this.userWorkouts);
+		this.displayAge = false;
+	})
+		.catch(err => {
+			console.log(err);
+			alert("error");
+		});
+	}
 
   trainerSalaries(): void {
     this.httpRequest.updateTrainerSalaries().then(data => {
@@ -38,6 +49,7 @@ export class AdminComponent implements OnInit {
         alert('error');
       });
   }
+  
   getUsersByAge(): void{
     this.usersByAge = [];
     this.httpRequest.getUsersByAge().then(data => {
@@ -54,13 +66,11 @@ export class AdminComponent implements OnInit {
         alert('error');
       });
   }
+  
   logout(): void {
     this.handleLogout();
     this.isLogout.emit();
     this.router.navigateByUrl('');
   }
-
-
-
-
+  
 }
