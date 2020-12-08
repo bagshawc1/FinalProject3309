@@ -51,9 +51,14 @@ export class FrontendComponent implements OnInit {
           this.recommendedExercises.push(data[newKey]);
           }
         }
-      this.displayGoals = false;
-      this.displayAllExercises = false;
-      this.displayExercises = true;
+      if (this.recommendedExercises.length < 1){
+        alert('You have no favourites so we cant recommend you an exercise');
+      }
+      else{
+        this.displayGoals = false;
+        this.displayAllExercises = false;
+        this.displayExercises = true;
+      }
     })
       .catch(err => {
         alert('error');

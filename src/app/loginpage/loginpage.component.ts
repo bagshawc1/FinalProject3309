@@ -41,12 +41,11 @@ export class LoginpageComponent implements OnInit {
   login(username: string, password: string): void {
     this.httpRequest.login(username, password).then(data => {
       for (const newKey in data) {
-        if (data.hasOwnProperty(newKey)){
+        if (data.hasOwnProperty(newKey)) {
           this.isSignedIn = true;
-          if (data[newKey].username === 'jsmithy'){
+          if (data[newKey].username === 'jsmithy') {
             this.router.navigateByUrl('admin');
-          }
-          else{
+          } else {
             sessionStorage.setItem('userID', data[newKey].id);
             this.router.navigateByUrl('members');
           }
@@ -57,35 +56,19 @@ export class LoginpageComponent implements OnInit {
         alert('Invalid Login Information');
       });
   }
-  createAccount(): void{
-    return;
+
+  createAccount(): void {
+    this.httpRequest.createUser(this.FLName, this.userAge, this.createUsername, this.createPassword).then(data => {
+      for (const newKey in data) {
+        if (data.hasOwnProperty(newKey)) {
+          alert('New Account Created');
+        }
+      }
+    })
+      .catch(err => {
+        console.log(err);
+        alert('username already in use');
+      });
   }
 
-
-  // async onSignup(email: string, password: string) {
-  //   await this.firebaseService.signUp(email, password)
-  //   if (this.firebaseService.isLoggedIn)
-  //     this.isSignedIn = true
-  //   this.router.navigateByUrl('')
-  //   alert("Your account has been created " + this.userName)
-  //   location.reload()
-  // }
-
-  // async onSignin(email: string, password: string) {
-  //   await this.firebaseService.signIn(email, password)
-  //   if (this.firebaseService.isLoggedIn) {
-  //     this.isSignedIn = true
-  //     this.router.navigateByUrl('/members')
-  //   }
-
-  // }
-
-  // async onAdminSignIn(email: string, password: string) {
-  //   await this.firebaseService.signAdminIn(email, password)
-  //   if (this.firebaseService.isLoggedIn && this.firebaseService.uid == "oCyGVbwWRxdy0MomFlcznULQ9V93") {
-  //     this.isSignedIn = true
-  //     this.router.navigateByUrl('/admin')
-  //   }
-
-  // }
 }

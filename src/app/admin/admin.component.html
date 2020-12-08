@@ -32,11 +32,18 @@
 
 <div class="signUp">
     <h2 class="messageCenter">
-        Display number of users within a certain age group:
+        Display number of users per age group:
     </h2>
     <div class="form">
-        <input type="text" placeholder="Enter the age group">
-        <button (click)="displayAll()">View users in the selected age group</button>
+        <button (click)="getUsersByAge()">View age demographics of BAMM</button>
+    </div>
+    <div *ngIf="displayAge">
+      <ul>
+        <li *ngFor="let group of usersByAge">
+          <h3>Age: {{group.age}}</h3>
+          <p>Number of Users: {{group.numberOfPeople}}</p>
+        </li>
+      </ul>
     </div>
 </div>
 

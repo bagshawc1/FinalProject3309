@@ -19,5 +19,14 @@ export class HttpRequestService {
   getMyGoals(userID): Promise<any> {
     return (this.http.get(this.url + 'myGoals/' + userID).toPromise());
   }
+  createUser(name, age, username, password): Promise<any> {
+    return (this.http.post(this.url + 'createUser/' + name + '/' + age + '/' + username + '/' + password, {}).toPromise());
+  }
+  getUsersByAge(): Promise<any>{
+    return (this.http.get(this.url + 'showByAge').toPromise());
+  }
+  updateTrainerSalaries(): Promise<any> {
+    return (this.http.post(this.url + 'increaseSalary', {}).toPromise());
+  }
 }
 

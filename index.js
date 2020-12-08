@@ -17,6 +17,7 @@ app.use(express.static(path.join(__dirname, 'dist/FinalProject3309')));
 
 //group users by age
 app.get('/showByAge', (req, res) => {
+  let userID = req.params.userID;
     connection.query("SELECT COUNT(id) as numberOfPeople, age FROM profile GROUP BY age ORDER BY age ASC", function (err, result, fields) {
       if (err) throw err;
       res.send(result);
@@ -31,7 +32,7 @@ app.get('/allExercises', (req, res) => {
 });
 // increase trainer salaries
 app.post('/increaseSalary', (req, res) => {
-  connection.query("UPDATE trainers SET salary = ROUND((salary * 1.10), 2) WHERE salary  < (SELECT average FROM trainerSalaries", function (err, result, fields) {
+  connection.query("UPDATE trainers SET salary = ROUND((salary * 1.10), 2) WHERE salary  < (SELECT average FROM trainerSalaries)", function (err, result, fields) {
     if (err) throw err;
     res.send(result);
   });
@@ -87,13 +88,29 @@ app.post('/createUser/:name/:age/:username/:password', (req, res) => {
   let age = req.params.age;
   let name = req.params.name;
 
-  connection.query("", function (err, result, fields) {
+  connection.query("SELECT username FROM profile WHERE username = '" + username + "'", function (err, result, fields) {
     if (err) throw err;
     if(result.length  === 0){
-      res.status(404).send()
+      connection.query("SELECT MAX(id) FROM profile", function (err, secondResult, fields) {
+        if (err) throw err;
+        let p = secondResult[0];
+        let idVal = 0;
+        for (let key in p){
+          if (p.hasOwnProperty(key))
+          idVal = p[key];
+        }
+        idVal = idVal + 1;
+        connection.query("INSERT INTO Profile VALUES (" + idVal + ", '" + name + "', " +  age + ", '" + username + "', '" +  password + "')", function (err, secondResult, fields) {
+          if (err) throw err;
+        });
+        connection.query("INSERT INTO Users VALUES (" + idVal + ",'none')", function (err, secondResult, fields) {
+          if (err) throw err;
+        });
+      });
+      res.send({msg: "New Account Created"});
     }
     else{
-      res.send(result);
+      res.status(401).send();
     }
   });
 });
