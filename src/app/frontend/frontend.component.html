@@ -18,7 +18,15 @@
         Ask for a workout reccommendation:
     </h2>
     <div class="form">
-        <button (click)="workoutRecommendation()">Recommend me a work-out!</button>
+        <button (click)="workoutRecommendation()">Recommend me some work-outs!</button>
+    </div>
+    <div *ngIf="displayExercises">
+      <ul>
+        <p>Because you favorited an exercise targeting {{recommendedExercises[0].muscleWorked}}, we recommend:</p>
+        <li *ngFor="let exercise of recommendedExercises">
+          <h3>{{exercise.exerciseName}}</h3>
+        </li>
+      </ul>
     </div>
 </div>
 <br>

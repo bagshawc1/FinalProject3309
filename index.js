@@ -36,21 +36,26 @@ app.get('/userWorkouts', (req, res) => {
   });
 });
 
-app.get('/recommendedExercise', (req, res) =>{
-  connection.query("SELECT eName as exerciseName, tMuscleWorked as muscleTargeted FROM (SELECT exercises.exerciseName as eExercises, exercises.muscleWorked, favourites.userID, favourites.exerciseName INTO #temp FROM exercises INNER JOIN favourites ON exercises.exerciseName = favourites.exerciseName) WHERE (SELECT eExercises", function (err, result, fields) {
+//get this user a recommendation
+app.get('/recommendedExercise/:userID', (req, res) =>{
+  let userID = req.params.userID;
+  connection.query("SELECT exerciseName, muscleWorked FROM exercises WHERE muscleWorked = (SELECT muscleWorked FROM exercises WHERE exerciseName = (SELECT exerciseName FROM favourites WHERE userID =" + userID + ")) LIMIT 5", function (err, result, fields) {
     if (err) throw err;
+    console.log(result);
     res.send(result);
   });
 });
 
-app.get('/showGoals:var', (req, res) =>{
-  let userID = req.params.var;
+//display all of this users goals
+app.get('/showGoals:userID', (req, res) =>{
+  let userID = req.params.userID;
   connection.query("SELECT profile.name, users.goals FROM profile INNER JOIN users ON profile.id = users.id WHERE users.id = " + userID, function (err, result, fields) {
     if (err) throw err;
     res.send(result);
   });
 });
 
+//login
 app.get('/login/:username/:password', (req, res) => {
   let username = req.params.username;
   let password = req.params.password;

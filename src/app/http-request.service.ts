@@ -10,19 +10,8 @@ export class HttpRequestService {
   login(user, pass): Promise<any> {
     return (this.http.get(this.url + 'login/' + user + '/' + pass).toPromise());
   }
-      // for (const newKey in data) {
-      //   if (data.hasOwnProperty(newKey)){
-      //     console.log(data[newKey].username);
-      //     const response = data[newKey].username;
-      //     return response.toString();
-      //   }
-      //
-      // }
-  //   })
-  //     .catch(err => {
-  //       return err;
-  //     });
-  //   return;
-  // }
+  recommendWorkout(userID): Promise<any> {
+    return (this.http.get(this.url + 'recommendedExercise/' + userID).toPromise());
+  }
 }
 
