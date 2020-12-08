@@ -21,19 +21,21 @@ export class AdminComponent implements OnInit {
     this.isSignedIn = false;
   }
 
-  displayAll(): void {
+  getUsersWorkouts(): void {
     this.httpRequest.getUsersWorkouts().then(data => {
-		for (const newKey in data) {
-			this.userWorkouts.push(data[newKey]);
-		}
-		console.log(this.userWorkouts);
-		this.displayAge = false;
-	})
-		.catch(err => {
-			console.log(err);
-			alert("error");
-		});
-	}
+      for (const newKey in data) {
+        if (data.hasOwnProperty(newKey)) {
+          this.userWorkouts.push(data[newKey]);
+        }
+      }
+      console.log(this.userWorkouts);
+      this.displayAge = false;
+    })
+      .catch(err => {
+        console.log(err);
+        alert('error');
+      });
+  }
 
   trainerSalaries(): void {
     this.httpRequest.updateTrainerSalaries().then(data => {
@@ -49,7 +51,6 @@ export class AdminComponent implements OnInit {
         alert('error');
       });
   }
-  
   getUsersByAge(): void{
     this.usersByAge = [];
     this.httpRequest.getUsersByAge().then(data => {
@@ -66,11 +67,9 @@ export class AdminComponent implements OnInit {
         alert('error');
       });
   }
-  
   logout(): void {
     this.handleLogout();
     this.isLogout.emit();
     this.router.navigateByUrl('');
   }
-  
 }

@@ -9,17 +9,6 @@
 
 <div class="signUp">
     <h2 class="messageCenter">
-        Display all users & their workouts:
-    </h2>
-    <div class="form">
-        <button (click)="displayAll()">View all users and workouts</button>
-    </div>
-</div>
-
-<br>
-
-<div class="signUp">
-    <h2 class="messageCenter">
         Modify trainer salaries:
     </h2>
     <div class="form">
@@ -59,11 +48,11 @@
     <div *ngIf="userWorkouts">
       <ul>
         <li *ngFor="let group of userWorkouts">
-          <h3>ID: {{group.id}}</h3>
-		  <h3>Name: {{group.id}}</h3>
-		  <h3>Age: {{group.age}}</h3>
-		  <h3>Workout ID: {{group.workoutID}}</h3>
-		  <h3>Workout Name: {{group.workoutName}}</h3>
+          <h3>Name: {{group.name}}</h3>
+          <p>ID: {{group.id}}</p>
+          <p>Age: {{group.age}}</p>
+          <p>Workout ID: {{group.workoutID}}</p>
+          <p>Workout Name: {{group.workoutName}}</p>
         </li>
       </ul>
     </div>
