@@ -11,18 +11,14 @@ import {HttpRequestService} from '../http-request.service';
 export class FrontendComponent implements OnInit {
   @Output() isLogout = new EventEmitter<void>();
   userID: string;
-  subjectEntry = '';
-  componentEntry = '';
-  superEntry = '';
-  array1 = [] as any[];
-  courses: any = [];
   isSignedIn = false;
   recommendedExercises = [];
+  exercises = [];
   displayExercises = false;
+  displayAllExercises = false;
   empty = '';
-  getSchedules: any;
-  private scheduleSubscriber: Subscription;
-
+  displayGoals = false;
+  goals = [];
 
   constructor(private httpRequest: HttpRequestService, private router: Router) { }
 
@@ -31,7 +27,20 @@ export class FrontendComponent implements OnInit {
   }
 
   viewAllExercises(): void {
-    return;
+    this.exercises = [];
+    this.httpRequest.getAllExercises().then(data => {
+      for (const newKey in data) {
+        if (data.hasOwnProperty(newKey)){
+          this.exercises.push(data[newKey]);
+        }
+      }
+      this.displayGoals = false;
+      this.displayExercises = false;
+      this.displayAllExercises = true;
+    })
+      .catch(err => {
+        alert('error');
+      });
   }
 
   workoutRecommendation(): void {
@@ -42,7 +51,26 @@ export class FrontendComponent implements OnInit {
           this.recommendedExercises.push(data[newKey]);
           }
         }
+      this.displayGoals = false;
+      this.displayAllExercises = false;
       this.displayExercises = true;
+    })
+      .catch(err => {
+        alert('error');
+      });
+  }
+  getMyGoals(): void{
+    this.goals = [];
+    this.httpRequest.getMyGoals(this.userID).then(data => {
+      for (const newKey in data) {
+        if (data.hasOwnProperty(newKey)){
+          this.goals.push(data[newKey]);
+        }
+      }
+      console.log(this.goals);
+      this.displayAllExercises = false;
+      this.displayExercises = false;
+      this.displayGoals = true;
     })
       .catch(err => {
         alert('error');
@@ -50,6 +78,7 @@ export class FrontendComponent implements OnInit {
   }
 
   logout(): void {
+    this.handleLogout();
     this.isLogout.emit();
     this.router.navigateByUrl('');
   }
@@ -57,7 +86,4 @@ export class FrontendComponent implements OnInit {
   handleLogout(): void {
     this.isSignedIn = false;
   }
-
-
-
 }

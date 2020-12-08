@@ -25,7 +25,9 @@ export class AdminComponent implements OnInit {
     alert('bingo');
   }
   logout(): void {
-    return;
+    this.handleLogout();
+    this.isLogout.emit();
+    this.router.navigateByUrl('');
   }
 
 

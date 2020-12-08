@@ -9,7 +9,6 @@
 }
 
 .signUp{
-
     background-color: lightblue;
     border: thin solid black;
     width: 100%;
@@ -39,4 +38,13 @@ div.form
     font-family: Arial;
     font-style: italic;
     text-align: center;
+}
+
+.myWorkouts{
+  background-color: indianred;
+  border: thin solid black;
+  width: 100%;
+  font-family: Arial;
+  font-style: italic;
+  text-align: center;
 }

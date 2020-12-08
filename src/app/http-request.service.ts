@@ -13,5 +13,11 @@ export class HttpRequestService {
   recommendWorkout(userID): Promise<any> {
     return (this.http.get(this.url + 'recommendedExercise/' + userID).toPromise());
   }
+  getAllExercises(): Promise<any> {
+    return (this.http.get(this.url + 'allExercises/').toPromise());
+  }
+  getMyGoals(userID): Promise<any> {
+    return (this.http.get(this.url + 'myGoals/' + userID).toPromise());
+  }
 }
 

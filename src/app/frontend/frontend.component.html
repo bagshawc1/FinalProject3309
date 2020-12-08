@@ -15,7 +15,7 @@
 
 <div class="signUp">
     <h2 class="messageCenter">
-        Ask for a workout reccommendation:
+        Ask for a Workout Recommendation:
     </h2>
     <div class="form">
         <button (click)="workoutRecommendation()">Recommend me some work-outs!</button>
@@ -32,13 +32,37 @@
 <br>
 <div class="newbanner">
     <h2 class="messageCenter">
-        View all exercises:
+        View All Exercises:
     </h2>
     <div class="form">
-        <button (click)="workoutRecommendation()">Show me all exercises!</button>
+        <button (click)="viewAllExercises()">Show me all exercises!</button>
     </div>
+  <div *ngIf="displayAllExercises">
+    <ul>
+      <p>All Exercises:</p>
+      <li *ngFor="let exercise of exercises">
+        <h3>{{exercise.exerciseName}}</h3>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="myWorkouts">
+  <h2 class="messageCenter">
+    View My Goals:
+  </h2>
+  <div class="form">
+    <button (click)="getMyGoals()">Show me my goals!</button>
+  </div>
+  <div *ngIf="displayGoals">
+    <ul>
+      <p>Your Goals:</p>
+      <li *ngFor="let goal of goals">
+        <h3>{{goal.goals}}</h3>
+      </li>
+    </ul>
+  </div>
 </div>
 
 
 <button (click)="logout()">Logout</button>
-<app-loginpage *ngIf="isSignedIn" (isLogout)="handleLogout()"></app-loginpage>
+
